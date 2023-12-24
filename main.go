@@ -15,21 +15,24 @@ func handlePostRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Check for the "message" field
 	message, ok := data["message"]
 	if !ok {
 		http.Error(w, "Invalid JSON message", http.StatusBadRequest)
 		return
 	}
 
-	fmt.Println(message) // Print the message to the server console
+	fmt.Println(message) 
 
-	// Send a success response
 	response := map[string]string{
 		"status":  "success",
 		"message": "Data successfully received",
 	}
 	json.NewEncoder(w).Encode(response)
+}
+
+func main() {
+	http.HandleFunc("/", handlePostRequest)
+	http.ListenAndServe(":8080", nil)
 }
 
 func main() {
