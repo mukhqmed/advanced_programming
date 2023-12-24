@@ -35,7 +35,3 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func main() {
-	http.HandleFunc("/", handlePostRequest)
-	http.ListenAndServe(":8080", nil)
-}
